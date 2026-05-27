@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<div class="container">
+<h2>Admin Login</h2>
+
+{% for m in get_flashed_messages() %}
+<p style="color:red;">{{ m }}</p>
+{% endfor %}
+
+<form method="post">
+<input name="username" placeholder="Admin Username" required>
+<input type="password" id="ap" name="password" required>
+
+<input type="checkbox" onclick="toggle()"> Show Password
+
+<button>Login</button>
+</form>
+
+<p>User? <a href="/login">Login here</a></p>
+</div>
+
+<script>
+function toggle(){
+let x=document.getElementById("ap");
+x.type=x.type==="password"?"text":"password";
+}
+</script>

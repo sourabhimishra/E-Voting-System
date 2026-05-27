@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<div class="sidebar">
+<h3>User Panel</h3>
+
+<a href="/vote">Give Vote</a>
+<a href="#">Profile</a>
+<a href="#">Settings</a>
+<a href="#">Feedback</a>
+<a href="#">Help</a>
+<a href="/logout">Logout</a>
+
+</div>
+
+<div class="main">
+
+<h2 style="text-align:center;">User Dashboard</h2>
+
+<div class="card" style="width:100%;">
+
+<h3>Give Your Vote</h3>
+
+
+{% if message %}
+<p style="color:green; font-weight:bold;">
+    ✅ {{ message }}
+</p>
+{% endif %}
+
+
+{% if already_voted and not message %}
+<p style="color:blue; font-weight:bold;">
+    ✔ You have already voted. Thank you!
+</p>
+{% endif %}
+
+
+{% if not already_voted %}
+
+<form method="post">
+
+{% for party in parties %}
+<label style="
+    display:flex;
+    align-items:center;
+    margin:10px 0;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    cursor:pointer;
+">
+
+    <input type="radio" name="party" value="{{ party.id }}" required style="margin-right:10px;">
+
+    
+    <img src="{{ url_for('static', filename=party.logo) }}"
+         width="50" height="50"
+         style="margin-right:15px; border-radius:5px;">
+
+    <b>{{ party.name }}</b>
+
+</label>
+{% endfor %}
+
+<button type="submit" style="margin-top:15px;">Submit Vote</button>
+
+</form>
+
+{% endif %}
+
+</div>
+
+</div>

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<div class="sidebar">
+<h3>Admin Panel</h3>
+
+<a href="/admin/dashboard">Dashboard</a>
+<a href="#">Show Votes</a>
+<a href="#">Settings</a>
+<a href="#">Feedback</a>
+<a href="/admin/logout">Logout</a>
+
+</div>
+
+<div class="main">
+
+<h2>Admin Dashboard</h2>
+
+<div class="card">Total Voters: {{ total_voters }}</div>
+<div class="card">Total Votes: {{ total_votes }}</div>
+
+<h3>Results</h3>
+
+<table>
+<tr><th>Party</th><th>Votes</th></tr>
+
+{% for r in results %}
+<tr>
+<td>{{ r.name }}</td>
+<td>{{ r.vote_count }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>

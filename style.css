@@ -1,0 +1,162 @@
+/* BODY (Login/Register Background) */
+body {
+    font-family: Arial;
+    margin: 0;
+    background: linear-gradient(135deg, #3AAFA9, #DEF2F1);
+}
+
+/* CONTAINER (LOGIN / REGISTER FORM) */
+.container {
+    width: 350px;
+    margin: 80px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    
+    border: 3px solid #0b1817;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.15);
+}
+
+/* INPUTS */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #3AAFA9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #2b7a78;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #3AAFA9;
+    position: fixed;
+    color: white;
+    padding: 20px;
+}
+
+/* SIDEBAR LINKS */
+.sidebar a {
+    display: block;
+    color: white;
+    margin: 12px 0;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background: #021212;
+}
+
+
+
+/* MAIN PANEL */
+.main {
+    margin-left: 240px;
+    padding: 40px;
+    background: #DEF2F1;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* TOP CARDS ROW */
+.top-cards {
+    display: flex;
+    gap: 20px;
+}
+
+/* SMALL CARDS */
+.small-card {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+}
+
+/* RESULT CARD */
+.result-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background: #983773;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* PARTY OPTIONS */
+label {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #f9f9f9;
+}
+
+label:hover {
+    background: #e6f7f6;
+    border-color: #3AAFA9;
+    transform: scale(1.02);
+}
+
+/* HEADER */
+.gov-header {
+    background: #3AAFA9;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+/* HEADER TITLE */
+.header-title {
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #d32f2f;
+}

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<div class="gov-top-bar"></div>
+
+<div class="gov-header">
+    <h1>Election Commission of India</h1>
+    <form method="POST" action="/set_language">
+        <select name="lang" onchange="this.form.submit()">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="ta">தமிழ்</option>
+        </select>
+    </form>
+</div>
+<div class="container">
+<h2>Your vote has been recorded</h2>
+<p>Thank you for voting.</p>
+</div>
+<div class="vote-quote">
+    🗳 "Your Vote is Your Voice — Strengthen Democracy."
+</div>

@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+<div class="gov-top-bar"></div>
+
+<div class="gov-header">
+    <h1 class="header-title">E-Voting Portal</h1>
+</div>
+    
+</div>
+
+
+<div class="container">
+
+    <h2>Register</h2>
+
+    {% for m in get_flashed_messages() %}
+        <p style="color:red;">{{ m }}</p>
+    {% endfor %}
+
+    <form method="post" onsubmit="return validatePassword()">
+
+        <input name="voter_id" placeholder="Voter ID" required>
+
+        <input name="aadhar" placeholder="Aadhaar Number" required>
+
+        <input type="date" name="dob" required>
+
+        <input type="password" id="password" name="password" placeholder="Password" required>
+
+        
+        <div style="margin:8px 0; text-align:left;">
+            <input type="checkbox" onclick="togglePassword()"> Show Password
+        </div>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    
+    <p style="margin-top:15px; font-size:14px;">
+        Already registered?
+        <a href="/login" style="color:#138808; font-weight:bold;">
+            Login here
+        </a>
+    </p>
+
+</div>
+
+
+<script>
+function togglePassword() {
+    const p = document.getElementById("password");
+    p.type = (p.type === "password") ? "text" : "password";
+}
+</script>
+
+
+    🗳 "Your Vote is Your Voice — Strengthen Democracy."
+</div>

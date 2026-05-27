@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Voting Portal | Inverted Slate</title>
+    <style>
+        /* --- SPLASH SCREEN --- */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: #FFFFFF;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+        .blink-text {
+            font-size: 2.2rem; font-weight: 800; color: #367D8A;
+            font-family: 'Inter', sans-serif; text-transform: uppercase;
+            letter-spacing: 5px;
+            animation: blinker 0.6s linear 3;
+        }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        /* --- THEME INTERCHANGED: SLATE BG (#367D8A) & WHITE CARDS (#FFFFFF) --- */
+        body {
+            margin: 0;
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #367D8A; /* Now the main background */
+            color: #FFFFFF;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* WHITE SIDEBAR */
+        .sidebar-info {
+            width: 130px;
+            height: 100vh;
+            background: #FFFFFF; /* Interchanged */
+            position: fixed;
+            left: 0; top: 0;
+            display: flex; flex-direction: column;
+            align-items: center;
+            padding: 15px 5px;
+            z-index: 100;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+        }
+
+        .cartoon-ballot-box {
+            font-size: 45px;
+            color: #367D8A; /* Interchanged */
+            margin-bottom: 15px;
+            animation: ballot-pulse 3s infinite;
+        }
+
+        .sidebar-middle {
+            width: 85%;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 2px solid #367D8A;
+            opacity: 0.9;
+        }
+
+        .sidebar-label {
+            color: #367D8A; /* Interchanged */
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        .main-content {
+            margin-left: 130px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            background: radial-gradient(circle at center, #3d8c9b 0%, #367D8A 100%);
+        }
+
+        /* HIGH-CONTRAST WHITE CARD */
+        .card {
+            background: #FFFFFF; /* Interchanged */
+            border-radius: 25px;
+            padding: 25px;
+            max-width: 650px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            color: #367D8A; /* Text now Slate for readability */
+        }
+
+        /* ANIMATED "LET'S VOTE" LOGO (Interchanged Colors) */
+        .lets-vote-img {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px auto;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%23367D8A" stroke="%23FFFFFF" stroke-width="3"/><g transform="translate(20,20) scale(0.6)"><path d="M45.5,0 L4,0 C1.8,0 0,1.8 0,4 L0,71 C0,73.2 1.8,75 4,75 L45.5,75 L91,37.5 L45.5,0 Z" fill="%23FFFFFF"/><text x="45.5" y="32" font-family="sans-serif" font-weight="bold" font-size="28px" fill="%23367D8A" text-anchor="middle">LET%27S</text><text x="45.5" y="60" font-family="sans-serif" font-weight="bold" font-size="28px" fill="%23367D8A" text-anchor="middle">VOTE</text></g></svg>');
+            background-size: cover;
+            animation: float-pulse 4s ease-in-out infinite;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0;
+            color: #367D8A;
+        }
+
+        .typing-container {
+            font-size: 1.1rem;
+            color: #367D8A;
+            height: 25px;
+            margin: 8px 0 20px 0;
+            font-weight: 600;
+        }
+
+        /* BUTTONS: Now Slate Outlined or Filled */
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: 2px solid #367D8A;
+            background: #FFFFFF;
+            color: #367D8A;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn:hover {
+            background: #367D8A;
+            color: #FFFFFF;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .quote-box {
+            background: #f0f5f6;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(54, 125, 138, 0.1);
+            color: #367D8A;
+            font-weight: 500;
+        }
+
+        /* --- COMPACT BOTTOM FLOW (Interchanged Colors) --- */
+        .bottom-voter-flow {
+            width: 100%;
+            max-width: 550px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .flow-step { flex: 1; text-align: center; }
+        .cartoon-icon { font-size: 35px; display: block; margin-bottom: 3px; color: #FFFFFF; }
+        .flow-text { font-size: 10px; font-weight: 700; color: #FFFFFF; opacity: 0.9; }
+
+        /* ANIMATIONS */
+        @keyframes ballot-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        @keyframes float-pulse { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .cartoon-id-identify { animation: spin 8s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .cartoon-submit-rocket { animation: rocket-launch 2.5s infinite; }
+        @keyframes rocket-launch { 0% { opacity:0; transform:translateY(5px); } 50% { opacity:1; } 100% { opacity:0; transform:translateY(-15px); } }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen"><div class="blink-text">E-Voting Portal</div></div>
+
+    <aside class="sidebar-info">
+        <span class="cartoon-ballot-box">🗳️</span>
+        <div class="sidebar-label">VOTER POWER</div>
+        <div style="margin: 15px 0; border-bottom: 1px solid #367D8A; width: 60%; opacity: 0.3;"></div>
+        <img src="https://t4.ftcdn.net/jpg/07/39/39/31/360_F_739393131_DWgSAc0EvLdqasgKMGafX0nWMCTGQxdK.jpg" class="sidebar-middle">
+        <div class="sidebar-label">SECURE PORTAL</div>
+    </aside>
+
+    <main class="main-content">
+        <div class="card">
+            <div class="lets-vote-img"></div>
+            <h1 class="title">E-Voting Portal</h1>
+            
+            <div class="typing-container">
+                <span id="type"></span>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn" onclick="location.href='/admin/login'">Admin Portal</button>
+                <button class="btn" onclick="location.href='/register'">Voter Register</button>
+            </div>
+
+            <div class="quote-grid">
+                <div class="quote-box">Your vote, your voice.</div>
+                <div class="quote-box">Safe Encryption.</div>
+                <div class="quote-box">Nation's pride.</div>
+            </div>
+        </div>
+
+        <div class="bottom-voter-flow">
+            <div class="flow-step">
+                <span class="cartoon-icon cartoon-id-identify">🆔</span>
+                <div class="flow-text">1. VERIFY ID</div>
+            </div>
+            <div class="flow-step">
+                <span class="cartoon-icon">🗳️</span>
+                <div class="flow-text">2. CAST VOTE</div>
+            </div>
+            <div class="flow-step">
+                <span class="cartoon-icon cartoon-submit-rocket">🚀</span>
+                <div class="flow-text">3. TRANSMIT</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => { splash.style.display = 'none'; startTyping(); }, 800);
+            }, 1800);
+        });
+
+        const texts = ["Reliable.", "Transparent.", "Verified.", "Let's Give Vote."];
+        let count = 0, index = 0, currentText = "", letter = "";
+
+        function startTyping() {
+            if (count === texts.length) count = 0;
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+            document.getElementById("type").textContent = letter;
+            if (letter.length === currentText.length) {
+                count++; index = 0;
+                setTimeout(startTyping, 2200); 
+            } else {
+                setTimeout(startTyping, 90); 
+            }
+        }
+    </script>
+</body>
+</html>
